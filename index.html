@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aigbogun Jerry Iyobor — Web Application Developer</title>
+  <style>
+    :root {
+      --bg-main: #090d16;
+      --bg-card: #111827;
+      --bg-tag: #1f2937;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #10b981;
+      --accent-hover: #34d399;
+      --border: #1f2937;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(9, 13, 22, 0.94);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      z-index: 100;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    nav a:hover {
+      color: var(--text-main);
+    }
+
+    .btn-resume {
+      background-color: var(--bg-tag);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .btn-resume:hover {
+      background-color: #374151;
+    }
+
+    .hero {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--text-muted);
+      display: block;
+      margin-top: 6px;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    }
+
+    .hero p {
+      max-width: 680px;
+      color: var(--text-muted);
+      font-size: 1.08rem;
+      margin-bottom: 32px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #052e16;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      border: 1px solid #374151;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-muted);
+    }
+
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:hover {
+      border-color: #374151;
+    }
+
+    .card-preview {
+      height: 200px;
+      background-color: #000000;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-family: monospace;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .card-preview video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .card-header h3 {
+      font-size: 1.25rem;
+    }
+
+    .status-pill {
+      font-family: monospace;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background-color: rgba(16, 185, 129, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      white-space: nowrap;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      color: #d1d5db;
+    }
+
+    .feature-list li {
+      margin-bottom: 6px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: "▸";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      background-color: var(--bg-tag);
+      color: #d1d5db;
+      font-family: monospace;
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .card-links {
+      display: flex;
+      gap: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .link-accent {
+      color: var(--accent);
+    }
+
+    .link-accent:hover {
+      color: var(--accent-hover);
+    }
+
+    .link-muted {
+      color: var(--text-muted);
+    }
+
+    .link-muted:hover {
+      color: var(--text-main);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-box {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .skill-box h3 {
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .skill-box p {
+      color: #d1d5db;
+      font-size: 0.95rem;
+    }
+
+    .contact {
+      text-align: center;
+      border-bottom: none;
+    }
+
+    .contact p {
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 28px;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#" class="logo">Jerry<span>.dev</span></a>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="resume.pdf" target="_blank" class="btn-resume">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="hero">
+      <div class="badge">Available for Full-Stack Web Development Roles</div>
+      <h1>
+        Hi, I'm Aigbogun Jerry Iyobor.
+        <span>Full-Stack Web Application Developer.</span>
+      </h1>
+      <p>
+        I architect and build scalable business web applications using Node.js, Express.js, NestJS, React, Angular, MySQL, and PostgreSQL—turning complex retail and healthcare workflows into reliable software.
+      </p>
+      <div class="btn-group">
+        <a href="#projects" class="btn-primary">View My Projects</a>
+        <a href="https://github.com/programmerjerryiyobor" target="_blank" class="btn-secondary">GitHub</a>
+        <a href="https://www.linkedin.com/in/jerry-iyobor-aigbogun-231256a2" target="_blank" class="btn-secondary">LinkedIn</a>
+        <a href="mailto:jerryiyobor653@gmail.com" class="btn-secondary">Email Me</a>
+      </div>
+    </div>
+
+    <section id="projects">
+      <h2 class="section-title">Featured Software Projects</h2>
+      <p class="section-subtitle">Production-ready management systems built for speed, accuracy, and daily business reliability.</p>
+
+      <div class="projects-grid">
+
+        <article class="card">
+          <div>
+            <div class="card-preview">
+              <video controls muted playsinline preload="metadata">
+                <source src="posdemo.mp4" type="video/mp4" />
+                POS Management System Demo Video
+              </video>
+            </div>
+            <div class="card-header">
+              <h3>POS Management System</h3>
+              <span class="status-pill">Full-Stack App</span>
+            </div>
+            <p>
+              End-to-end Point of Sale web application built to help retail businesses process transactions quickly, track real-time inventory, and audit daily revenue.
+            </p>
+            <ul class="feature-list">
+              <li>Fast checkout interface with instant receipt generation and barcode lookup.</li>
+              <li>Automated stock deduction and real-time low-inventory alerts.</li>
+              <li>Role-based access control for cashiers, managers, and administrators.</li>
+              <li>Daily, weekly, and monthly sales analytics and profit reporting.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Express.js</span>
+              <span class="tag">PostgreSQL</span>
+            </div>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/programmerjerryiyobor" target="_blank" class="link-accent">GitHub Profile</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+           <div class="card-preview">
+  		<video controls muted playsinline preload="metadata">
+    		<source src="./pmsdemo.mp4" type="video/mp4" />
+    		Pharmacy Management System Demo Video
+  		</video>
+	   </div>
+
+            <div class="card-header">
+              <h3>Pharmacy Management System</h3>
+              <span class="status-pill">Full-Stack App</span>
+            </div>
+            <p>
+              Comprehensive pharmacy operations platform engineered to track medication batches, prevent expired drug dispensing, and streamline supplier procurement.
+            </p>
+            <ul class="feature-list">
+              <li>Batch-level inventory tracking with automated expiry date warnings.</li>
+              <li>Prescription logging, dosage records, and customer billing history.</li>
+              <li>Supplier purchase orders and automated restock management workflows.</li>
+              <li>Audit-ready sales summaries and controlled-substance tracking.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Express.js</span>
+            </div>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/programmerjerryiyobor" target="_blank" class="link-accent">GitHub Profile</a></div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Technical Stack</h2>
+      <p class="section-subtitle">Core languages, frameworks, and databases I use to build production software.</p>
+
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3>Frontend Frameworks</h3>
+          <p>React, Angular, JavaScript (ES6+), TypeScript, HTML5, Responsive CSS3</p>
+        </div>
+        <div class="skill-box">
+          <h3>Backend &amp; APIs</h3>
+          <p>Node.js, Express.js, NestJS, RESTful API Architecture, Role-Based Auth</p>
+        </div>
+        <div class="skill-box">
+          <h3>Databases &amp; Tools</h3>
+          <p>PostgreSQL, MySQL, Relational Schema Design, Git, GitHub</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2 class="section-title">Get In Touch</h2>
+      <p>
+        Looking for a full-stack web application developer to build reliable software or join your engineering team? Contact me directly via email, phone, or LinkedIn.
+      </p>
+      <div class="contact-actions">
+        <a href="mailto:jerryiyobor653@gmail.com" class="btn-primary">jerryiyobor653@gmail.com</a>
+        <a href="tel:+2348038791413" class="btn-secondary">Call / WhatsApp: 08038791413</a>
+        <a href="https://www.linkedin.com/in/jerry-iyobor-aigbogun-231256a2" target="_blank" class="btn-secondary">LinkedIn</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 Aigbogun Jerry Iyobor. Web Application Developer.
+    </div>
+  </footer>
+
+</body>
+</html>
